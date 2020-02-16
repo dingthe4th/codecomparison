@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="acm">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../IntelliJ/acm.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../IntelliJ/spl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../IntelliJ/spl.jar!/" />
+    </SOURCES>
+  </library>
+</component>
