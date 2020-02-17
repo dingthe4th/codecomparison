@@ -11,9 +11,18 @@ public class MyFile {
         this.myFile = file;
         this.wordEntry = new ArrayList<>();
         this.lineEntry = new ArrayList<>();
+
     }
     File getFile() {
         return myFile;
+    }
+
+    String getString(){//gets the concat string
+        String temp = "";
+        for(String word: this.wordEntry){
+            temp+=word;
+        }
+        return temp;
     }
 }
 

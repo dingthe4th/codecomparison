@@ -45,6 +45,7 @@ public class Controller {;
         }
         fileCountLabel.setText(filesDirectory.size() + " files found.");
     }
+
     @FXML public void showMatrix() throws IOException {
         gridPane = new GridPane();
         if(folder == null) {
@@ -56,7 +57,9 @@ public class Controller {;
         scrollPane.setLayoutY(120);
         getMatrix(folder);
     }
+
     public void getMatrix(File folder) throws IOException {
+        Test Functions = new Test();
         DataEntry[][] dataEntries = new DataEntry[filesDirectory.size()][filesDirectory.size()];
         for (MyFile myFile : filesDirectory) {
             constructList(myFile.getFile(),myFile.wordEntry,myFile.lineEntry);
@@ -78,12 +81,15 @@ public class Controller {;
             for (int j = 0; j < filesDirectory.size(); j++) {
                 if (j == 0) {
                     gridPane.add(sp, i+1, 0);
-                    float a = compare(filesDirectory.get(i).wordEntry, filesDirectory.get(j).wordEntry);
+
+                    float a = Functions.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
+
+                    // a = compare(filesDirectory.get(i).wordEntry, filesDirectory.get(j).wordEntry);
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
                 }
                 else {
-                    float a = compare(filesDirectory.get(i).wordEntry, filesDirectory.get(j).wordEntry);
+                    float a = Functions.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
                 }
@@ -108,6 +114,8 @@ public class Controller {;
             gridPane.add(sp,filesDirectory.size()+1,i+1);
         }
     }
+
+
     public void constructList(File file, ArrayList<String> wordList, ArrayList<String> lineList) throws IOException {
         if(file.isDirectory()) {
             for(File entry : Objects.requireNonNull(file.listFiles())) {
@@ -133,6 +141,8 @@ public class Controller {;
             br.close();
         }
     }
+
+
     public float compare(ArrayList<String> list1, ArrayList<String> list2) {
         int totalWords, count;
         ArrayList<String> temp1 = new ArrayList<>(list1);
