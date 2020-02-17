@@ -5,16 +5,24 @@ import java.util.ArrayList;
 
 public class MyFile {
     private File myFile;
-    ArrayList<String> wordEntry;
-    ArrayList<String> lineEntry;
+    ArrayList<String> wordEntry;            // list of words per file
+    ArrayList<String> lineEntry;            // list of lines per file
+    ArrayList<String> operatorsList;        // list of operators
+    ArrayList<String> operandsList;         // list of operands
+    MetricsData metricsData;
     MyFile(File file) {
         this.myFile = file;
         this.wordEntry = new ArrayList<>();
         this.lineEntry = new ArrayList<>();
+        this.operatorsList = new ArrayList<>();
+        this.operandsList = new ArrayList<>();
+        metricsData = new MetricsData();
     }
+
     File getFile() {
         return myFile;
     }
+
 }
 
 

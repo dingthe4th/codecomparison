@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -10,30 +9,28 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {;
-    @FXML ScrollPane scrollPane = new ScrollPane();
+    @FXML ScrollPane scrollPane = new ScrollPane();             // parent of grid pane
     @FXML Label prompt;                                         // program status
-    @FXML Label fileCountLabel;
-    @FXML ListView<String> listView;
-    GridPane gridPane;                      // for matrix display
-    ArrayList<MyFile> filesDirectory;
+    @FXML Label fileCountLabel;                                 // display file count in submission folder
+    @FXML ListView<String> listView;                            // list view for GUI
+    GridPane gridPane;                                          // for matrix display
+    ArrayList<MyFile> filesDirectory;                           // list for files
+    ArrayList<String> operatorsMainList;                        // list for operators from a text file
     File folder;                                                // submission folder
 
     @FXML public void getFolder() throws IOException {
         filesDirectory = new ArrayList<>();
         DirectoryChooser folderChooser = new DirectoryChooser();
-        folderChooser.setInitialDirectory(new File("Src\\sample"));
+        folderChooser.setInitialDirectory(new File("D:\\LBYCP2D_Collab\\SimilarityMatrix\\src"));
         folder = folderChooser.showDialog(null);
         prompt.setText("Folder selected: " + folder.getName());
         listView.getItems().clear();
@@ -44,6 +41,11 @@ public class Controller {;
             listView.getItems().add(temp.getFile().getName());
         }
         fileCountLabel.setText(filesDirectory.size() + " files found.");
+
+        for (MyFile myFile : filesDirectory) {
+            constructList(myFile.getFile(),myFile.wordEntry,myFile.lineEntry);
+        }
+        getOperatorsMainList("D:\\LBYCP2D_Collab\\SimilarityMatrix\\src\\sample\\list_operators.txt");
     }
     @FXML public void showMatrix() throws IOException {
         gridPane = new GridPane();
@@ -54,13 +56,10 @@ public class Controller {;
         scrollPane.setContent(gridPane);
         scrollPane.setLayoutX(0);
         scrollPane.setLayoutY(120);
-        getMatrix(folder);
+        getMatrix();
     }
-    public void getMatrix(File folder) throws IOException {
+    public void getMatrix() {
         DataEntry[][] dataEntries = new DataEntry[filesDirectory.size()][filesDirectory.size()];
-        for (MyFile myFile : filesDirectory) {
-            constructList(myFile.getFile(),myFile.wordEntry,myFile.lineEntry);
-        }
         for(int i = 0; i<filesDirectory.size(); i++) {
             Rectangle rect = new Rectangle(50,30);
             rect.setFill(Color.TRANSPARENT);
@@ -160,5 +159,98 @@ public class Controller {;
         }
 
         return (float) count/totalWords;
+    }
+
+    public void showMetrics() {
+        gridPane = new GridPane();
+        if(folder == null) {
+            prompt.setText("Please select submission folder first.");
+            return;
+        }
+        scrollPane.setContent(gridPane);
+        scrollPane.setLayoutX(0);
+        scrollPane.setLayoutY(120);
+        getMetrics();
+        updateMetrics();
+    }
+
+    public void updateMetrics() {
+        int uniqueOperators = 0;                                // gets the number of unique operators
+        int uniqueOperands = 0;                                 // gets the number of unique operands
+        int totalOperators = 0;                                 // gets the total number of operators
+        int totalOperands = 0;                                  // gets the total number of operands
+        ArrayList<String> foundOperators = new ArrayList<>();   // store the operators that is already found per file
+        ArrayList<String> foundOperands = new ArrayList<>();    // store the operands that is already found per file
+
+        for(int i = 0; i<filesDirectory.size(); i++) {
+            for(String operator: filesDirectory.get(i).operatorsList) {
+                if(!foundOperators.contains(operator)) {
+                    uniqueOperators++;
+                    foundOperators.add(operator);
+                }
+                else if(foundOperators.contains(operator)) totalOperators++;
+            }
+            for(String operand: filesDirectory.get(i).operandsList) {
+                if(!foundOperators.contains(operand)) {
+                    uniqueOperands++;
+                    foundOperands.add(operand);
+                }
+                else if(foundOperands.contains(operand)) totalOperands++;
+            }
+            filesDirectory.get(i).metricsData.programVocabolary = uniqueOperands + uniqueOperators;
+            filesDirectory.get(i).metricsData.programLength = totalOperands + totalOperators;
+            filesDirectory.get(i).metricsData.programVolume = filesDirectory.get(i).metricsData.programLength *
+                    Math.log(filesDirectory.get(i).metricsData.programVocabolary);
+            filesDirectory.get(i).metricsData.programLevel = (2*uniqueOperands) / (uniqueOperators*totalOperands);
+            filesDirectory.get(i).metricsData.programDifficulty = (uniqueOperators*totalOperands) / (2*uniqueOperands);
+            filesDirectory.get(i).metricsData.programEffort = filesDirectory.get(i).metricsData.programVolume *
+                    filesDirectory.get(i).metricsData.programDifficulty;
+        }
+    }
+    public void getMetrics() {
+        String replacement = "";
+        boolean commentDetected = false;
+        for(int i = 0; i<filesDirectory.size(); i++) {
+            for (String line : filesDirectory.get(i).lineEntry) {
+                if(matchCount(line,"//") == 0) continue;
+                if(matchCount(line,"/*") != 0 && !commentDetected) {
+                    commentDetected = true;
+                    continue;
+                }
+                if((commentDetected) && (matchCount(line,"*/") == 0)) continue;
+                else commentDetected = false;
+                for (String pattern : operatorsMainList) {
+                    replacement = pattern;
+                    int a = matchCount(line, pattern);
+                    if (a!=0) {
+                        filesDirectory.get(i).operatorsList.add(pattern);
+                    }
+                }
+                line = line.replace(replacement,"");
+                String[] operandsCandidate = line.split(" ");
+                for(String words : operandsCandidate) {
+                    filesDirectory.get(i).operandsList.add(words.trim());
+                }
+            }
+        }
+    }
+
+    int matchCount(String str, String pattern) {
+        String[] words = str.split(" ");
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(words));
+        return Collections.frequency(list,pattern);
+    }
+
+    void getOperatorsMainList(String filename) throws IOException {
+        File file = new File(filename);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while((line = br.readLine()) != null) {
+            String[] words = line.split(",");
+            for(String word : words) {
+                operatorsMainList.add(word.trim());
+            }
+        }
     }
 }
