@@ -161,7 +161,7 @@ public class Controller {;
         return (float) count/totalWords;
     }
 
-    public void showMetrics() {
+    @FXML public void showMetrics() {
         gridPane = new GridPane();
         if(folder == null) {
             prompt.setText("Please select submission folder first.");
@@ -172,6 +172,15 @@ public class Controller {;
         scrollPane.setLayoutY(120);
         getMetrics();
         updateMetrics();
+
+        for(int i=0; i< filesDirectory.size(); i++) {
+            gridPane.add(filesDirectory.get(i).metricsData.getDifficultyPane(),i,0);
+            gridPane.add(filesDirectory.get(i).metricsData.getEffortPane(),i,1);
+            gridPane.add(filesDirectory.get(i).metricsData.getLengthPane(),i,2);
+            gridPane.add(filesDirectory.get(i).metricsData.getLevelPane(),i,3);
+            gridPane.add(filesDirectory.get(i).metricsData.getVocabolaryPane(),i,4);
+            gridPane.add(filesDirectory.get(i).metricsData.getVolumePane(),i,5);
+        }
     }
 
     public void updateMetrics() {

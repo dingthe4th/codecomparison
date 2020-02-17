@@ -20,7 +20,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#getFolder" prefHeight="33.0" prefWidth="97.0" text="Select Filepath" />
             <Button mnemonicParsing="false" onAction="#showMatrix" prefHeight="33.0" prefWidth="104.0" text="Generate Matrix" />
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" text="Generate Metrics" />
+            <Button mnemonicParsing="false" onAction="#showMetrics" prefHeight="33.0" prefWidth="111.0" text="Generate Metrics" />
             <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" text="Export Matrix" />
             <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" text="Export Metrics" />
          </children>
