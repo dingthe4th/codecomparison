@@ -1,0 +1,6 @@
+if,while,else,while,do,break,continue,for,
+int,double,float,return,char,chase,sizeof,long,short,
+typedef,switch,unsigned,void,static,struct,final,goto,
++,-,*,/,],[,),(,.,System,println,print,out,main,;,<=,=,
+++,--,<,>,>=,+=,-=,*=,/=,==,!=,!,getchar,getch,&&,getline,
+readline,EOF,
