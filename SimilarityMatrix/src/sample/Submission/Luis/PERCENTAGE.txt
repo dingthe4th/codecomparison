@@ -1,0 +1,9 @@
+The program basically reads the program files per line
+and then it compares each line from prog 1 and 2 with
+each other and if they are the same, assign it to the
+longest same string and if a longer same string occurs
+after, then simply replace it.
+
+Then to get the percentage, I just got the ratio of the
+same number of lines to the total number of lines to 
+indicate the similarity percentage.

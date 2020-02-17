@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/COLLABCP2D.iml" filepath="$PROJECT_DIR$/.idea/COLLABCP2D.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LBYCP2D_Exer0/Similarity Algorithm/Similarity Algorithm.iml" filepath="$PROJECT_DIR$/LBYCP2D_Exer0/Similarity Algorithm/Similarity Algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SimilarityMatrix/SimilarityMatrix.iml" filepath="$PROJECT_DIR$/SimilarityMatrix/SimilarityMatrix.iml" />
     </modules>
   </component>
 </project>
