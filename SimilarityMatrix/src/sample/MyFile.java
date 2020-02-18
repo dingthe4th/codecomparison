@@ -19,8 +19,17 @@ public class MyFile {
         this.metricsData = new MetricsData();
     }
 
+
     File getFile() {
         return myFile;
+    }
+
+    String getString(){//gets the concat string
+        String temp = "";
+        for(String word: this.wordEntry){
+            temp+=word;
+        }
+        return temp;
     }
 
     void addOperator(String str) {
