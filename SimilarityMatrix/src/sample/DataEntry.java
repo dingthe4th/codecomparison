@@ -25,15 +25,6 @@ public class DataEntry {
     }
 
     public void setRectColor(float score, Rectangle rect) {
-        if(score < .20 || score == .20)
-            rect.setFill(Color.INDIGO);
-        else if(score < .40 || score == .4)
-            rect.setFill(Color.BLUE);
-        else if(score < .60 || score == .6)
-            rect.setFill(Color.GREEN);
-        else if(score < .80 || score == .8)
-            rect.setFill(Color.ORANGE);
-        else if(score > .80 || score == 1.0)
-            rect.setFill(Color.RED);
+        rect.setFill(Color.rgb( 255,255-Math.round(255*score),255-Math.round(255*score)));
     }
 }

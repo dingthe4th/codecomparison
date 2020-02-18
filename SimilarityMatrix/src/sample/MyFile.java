@@ -16,11 +16,19 @@ public class MyFile {
         this.lineEntry = new ArrayList<>();
         this.operatorsList = new ArrayList<>();
         this.operandsList = new ArrayList<>();
-        metricsData = new MetricsData();
+        this.metricsData = new MetricsData();
     }
 
     File getFile() {
         return myFile;
+    }
+
+    void addOperator(String str) {
+        this.operatorsList.add(str);
+    }
+
+    void addOperand(String str) {
+        this.operandsList.add(str);
     }
 
 }

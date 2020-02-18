@@ -62,7 +62,7 @@ public class MetricsData {
 
     public StackPane getVolumePane() {
         Rectangle rect = new Rectangle(50,30);
-        Label label = new Label(String.valueOf(programDifficulty));
+        Label label = new Label(String.valueOf(programVolume));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
