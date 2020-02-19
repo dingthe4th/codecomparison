@@ -10,7 +10,7 @@ import java.util.Iterator;
 //  This is the class where I  play around ideas and see if they work
 public class Test {
 
-    static void hasher(String filePath)throws Exception{//hashes the code
+    static void hasher(String filePath)throws Exception{    //hashes the code
 
         String fileString = "",fileLine;
         HashSet<Integer> listofGrams = new HashSet<>();
@@ -110,7 +110,8 @@ public class Test {
         ArrayList<int[]> fingerPrints = new ArrayList<>();
 
         //initial window
-        for(int x=w-1;x>=0;x--){
+
+        for(int x=w-1;x>0;x--){
             if(h.get(x)<h.get(min)){
                 x=min;
             }
@@ -177,6 +178,7 @@ public class Test {
             }
         }
         int union = fingerPrint1.size()+fingerPrint2.size()-occurences;
+        System.out.print("Similarity checked");
         return (float)occurences/union;
 
     }

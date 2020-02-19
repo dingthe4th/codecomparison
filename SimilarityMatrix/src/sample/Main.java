@@ -12,7 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("ComparisonMatrix.fxml"));
         primaryStage.setTitle("Comparison Matrix");
-        primaryStage.setScene(new Scene(root, 1280, 800));
+        Scene scene = new Scene(root,1280,800);
+//        scene.getStylesheets().add(getClass().getResource("Button.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
     public static void main(String[] args) {

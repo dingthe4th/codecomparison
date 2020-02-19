@@ -2,5 +2,18 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair0" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair10" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair11" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair12" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair4" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair6" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair8" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair9" vcs="Git" />
   </component>
 </project>

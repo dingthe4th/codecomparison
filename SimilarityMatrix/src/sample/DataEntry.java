@@ -25,8 +25,7 @@ public class DataEntry {
     }
 
     public void setRectColor(float score, Rectangle rect) {
-
-        rect.setFill(Color.rgb( 255,255-Math.round(255*score),255-Math.round(255*score)));
+        rect.setFill(Color.rgb( 0,255-Math.round(255*score),0));
 
 //        if(score < .20 || score == .20)
 //            rect.setFill(Color.INDIGO);
