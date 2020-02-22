@@ -31,7 +31,7 @@ public class Controller {;
     @FXML public void getFolder() throws IOException {
         filesDirectory = new ArrayList<>();
         DirectoryChooser folderChooser = new DirectoryChooser();
-        folderChooser.setInitialDirectory(new File("D:\\LBYCP2D_Collab\\SimilarityMatrix\\src"));
+        folderChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         folder = folderChooser.showDialog(null);
         prompt.setText("Folder selected: " + folder.getName());
         listView.getItems().clear();
