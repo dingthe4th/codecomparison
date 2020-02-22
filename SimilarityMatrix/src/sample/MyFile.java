@@ -19,7 +19,6 @@ public class MyFile {
         this.metricsData = new MetricsData();
     }
 
-
     File getFile() {
         return myFile;
     }

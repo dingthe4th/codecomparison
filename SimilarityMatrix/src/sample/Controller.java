@@ -1,6 +1,4 @@
 package sample;
-
-import com.sun.deploy.util.StringUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -10,10 +8,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
+
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -262,13 +260,15 @@ public class Controller {;
             System.out.println("Unique Operators: " +uniqueOperators);
             System.out.println("Total Operands: " +totalOperands);
             System.out.println("Total Operators: " +totalOperators);
+            System.out.println(foundOperands);
+            System.out.println(foundOperators);
 
             filesDirectory.get(i).metricsData.setProgramVocabolary(Math.round(uniqueOperands + uniqueOperators));
             filesDirectory.get(i).metricsData.setProgramLength(Math.round(totalOperands + totalOperators));
             filesDirectory.get(i).metricsData.setProgramVolume(Math.round(filesDirectory.get(i).metricsData.programLength *
                     Math.log(filesDirectory.get(i).metricsData.programVocabolary)));
             double temp = (2*uniqueOperands) / (uniqueOperators*totalOperands);
-            filesDirectory.get(i).metricsData.setProgramLevel((double)Math.round(temp*100)/100);
+            filesDirectory.get(i).metricsData.setProgramLevel((double)Math.round(temp*1000)/1000);
             filesDirectory.get(i).metricsData.setProgramDifficulty(Math.round((uniqueOperators*totalOperands) / (2*uniqueOperands)));
             filesDirectory.get(i).metricsData.setProgramEffort(Math.round(filesDirectory.get(i).metricsData.programVolume *
                     filesDirectory.get(i).metricsData.programDifficulty));
@@ -279,31 +279,50 @@ public class Controller {;
         for(int i = 0; i<filesDirectory.size(); i++) {
             for (String line : filesDirectory.get(i).lineEntry) {
                 System.out.println("LINE " + line);
-                if(matchCount(line,"//") != 0 && !commentDetected) continue;
+                // detects if line contains a // comment
+                if(matchCount(line,"//") != 0) {
+                    try {
+                        line = line.substring(0,line.indexOf('/')-1);
+                    }
+                    catch (StringIndexOutOfBoundsException e) {
+                        line = line.substring(0,line.indexOf('/'));
+                    }
+                }
+                // detects if line contains a /* */ comment
+                if(matchCount(line,"/*") != 0 && matchCount(line, "*/") != 0) continue;
+                // detects if line contains a /* comment
                 if(matchCount(line,"/*") != 0 && !commentDetected) {
                     commentDetected = true;
                     continue;
                 }
+                // detects if line contains a */ comment
                 if((commentDetected) && (matchCount(line,"*/") == 0)) continue;
-                // @TODO /* */ -- within one line
                 else commentDetected = false;
                 for (String pattern : operatorsMainList) {
                     int a = matchCount(line, pattern);
-                    // if I want burger //  return 1
-                    System.out.println("VALUE OF A: pattern: " + a + pattern);
+                    if(pattern.equals(".")) {
+                        line = line.replaceAll("[.]"," ");
+                    }
+                    if(pattern.equals("(")) {
+                        line = line.replaceAll("[(]"," ");
+                    }
                     if (a!=0) {
-//                        System.out.println("YEAH BOI");
-                        filesDirectory.get(i).addOperator(pattern);
+                        for(int j=0; j<a; j++)
+                            filesDirectory.get(i).addOperator(pattern);
                     }
                 }
                 String[] operandsCandidate = line.split(" ");
                 for(String words : operandsCandidate) {
+                    words = words.replaceAll("\\W", " ");
+                    words = words.trim();
                     if(!words.equals(" ") && !words.equals(""))
+                        System.out.println("WORDS: " + words.trim());
                         filesDirectory.get(i).addOperand(words.trim());
                 }
             }
         }
-    }                               // get list of operators and operands
+    }
+    // get list of operators and operands
     int matchCount(String str, String target) {
         Pattern p = Pattern.compile(target, Pattern.LITERAL);
         Matcher m = p.matcher(str);
