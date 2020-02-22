@@ -10,7 +10,7 @@ import java.util.Iterator;
 //  This is the class where I  play around ideas and see if they work
 public class Test {
 
-    static void hasher(String filePath)throws Exception{//hashes the code
+    static void hasher(String filePath)throws Exception{    //hashes the code
 
         String fileString = "",fileLine;
         HashSet<Integer> listofGrams = new HashSet<>();
@@ -85,7 +85,6 @@ public class Test {
         catch(Exception e){
             e.printStackTrace();
         }
-        System.out.println("file string: "+fileString);
         return fileString;
 
     }
@@ -101,7 +100,6 @@ public class Test {
             hashSet.add(temp.hashCode());
 
         }
-        System.out.println(hashSet);
         return hashSet;
     }
 
@@ -112,7 +110,8 @@ public class Test {
         ArrayList<int[]> fingerPrints = new ArrayList<>();
 
         //initial window
-        for(int x=w-1;x>=0;x--){
+
+        for(int x=w-1;x>0;x--){
             if(h.get(x)<h.get(min)){
                 x=min;
             }
@@ -152,9 +151,6 @@ public class Test {
 
         }
 
-       for(int[] value: fingerPrints){
-           System.out.print(value[0]+":"+value[1]+"  ");
-       }
 
         return  fingerPrints;
         // i is left ipart of window
@@ -168,33 +164,37 @@ public class Test {
 
         for(int i = 0;i<fingerPrint1.size(); i++){//iterates through the entirety of fingerprint1
             for(int j = 0;j<fingerPrint2.size();j++){
-                if(fingerPrint1.get(j)[0]==fingerPrint2.get(j)[0]){
-                    if(!fp1IndexSimilarSet.contains(i)||!fp2IndexSimilarSet.contains(j)){
+                if(fingerPrint1.get(i)[0]==fingerPrint2.get(j)[0]){
+                    if(fp1IndexSimilarSet.contains(i)||fp2IndexSimilarSet.contains(j)){
                         //if  both indexes are not yet marked as similar to another element, add them to the set and increment occurences
+                    }
+                    else{
+
                         fp1IndexSimilarSet.add(i);
                         fp2IndexSimilarSet.add(j);
                         occurences++;
-
                     }
                 }
             }
-
-            int union = fingerPrint1.size()+fingerPrint2.size()-occurences;
-            return (float)occurences/union;
-
-
         }
+        int union = fingerPrint1.size()+fingerPrint2.size()-occurences;
+        System.out.print("Similarity checked");
+        return (float)occurences/union;
 
-        return 0;
     }
 
+    static float getSimilarity(String code1, String code2){
+        ArrayList<int[]> fp1 = fingerPrint(toKGrams(code1,3),100);
+        ArrayList<int[]> fp2 = fingerPrint(toKGrams(code2,3),100);
+        return getSimilarity(fp1,fp2);
+
+    }
 
 
     public static void main(String args[]){
         try {
             ArrayList<int[]> fp1 = fingerPrint(toKGrams(toString("assets//Controller.java"),10),100);
             ArrayList<int[]> fp2 = fingerPrint(toKGrams(toString("assets//Controller2.java"),10),100);
-            System.out.println("\nMOMENT OF TRUTH: "+getSimilarity(fp1,fp2));
 
         }
         catch (Exception e) {
