@@ -24,6 +24,11 @@ ArrayList fingerPrint(ArrayList<Integer> h, int w)
 
 float getSimilarity(fingerprint1, fingerprint2)
       use the fingerprint() to get fingerprint and use it here to find the similarity of the two documents
+    
+private static final String initialDirectory = "D:\\LBYCP2D_Collab\\SimilarityMatrix\\src";
+    set as the initial directory of the program || change if you are using different PC
+ 
+
       
   
 
