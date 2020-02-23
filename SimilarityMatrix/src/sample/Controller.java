@@ -200,7 +200,6 @@ public class Controller implements Initializable {;
     *   PER WORD
     */
     public void constructList(File file, ArrayList<String> wordList, ArrayList<String> lineList) throws IOException {
-     */
         if(file.isDirectory()) {
             for(File entry : Objects.requireNonNull(file.listFiles())) {
                 constructList(entry,wordList,lineList);
