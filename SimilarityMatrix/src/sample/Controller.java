@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class Controller implements Initializable {;
     /* initial directory of the program || change if you are using different PC */
-    private static final String initialDirectory = "D:\\LBYCP2D_Collab\\SimilarityMatrix\\src";
+    private static final String initialDirectory = System.getProperty("user.dir");
     public TableView<Top10> tableView;
     @FXML private TableColumn<Top10, String> table_col1;
     @FXML private TableColumn<Top10, String> table_col2;
@@ -200,7 +200,7 @@ public class Controller implements Initializable {;
     *   PER WORD
     */
     public void constructList(File file, ArrayList<String> wordList, ArrayList<String> lineList) throws IOException {
-     */
+
         if(file.isDirectory()) {
             for(File entry : Objects.requireNonNull(file.listFiles())) {
                 constructList(entry,wordList,lineList);

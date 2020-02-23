@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87675370-9d4d-4e85-828b-b42047f8841e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Top10.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/ComparisonMatrix.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/ComparisonMatrix.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/DataEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/MyFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/MyFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimilarityMatrix/src/sample/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,20 +21,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="227" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="94">
+              <caret line="186" selection-start-line="186" selection-end-line="186" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="n#!!doc;n#constructList#0;n#Controller#0" />
-                <element signature="method#constructList#0;class#Controller#0" />
-                <element signature="n#!!doc;n#compare#0;n#Controller#0" />
-                <element signature="method#compare#0;class#Controller#0" />
-                <element signature="method#showMetrics#0;class#Controller#0" />
-                <element signature="method#updateMetrics#0;class#Controller#0" />
-                <element signature="method#getMetrics#0;class#Controller#0" />
-                <element signature="method#matchCount#0;class#Controller#0" />
-                <element signature="method#getOperatorsMainList#0;class#Controller#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/ComparisonMatrix.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="43">
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -48,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+            <state relative-caret-position="192">
+              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -57,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="201" column="11" selection-start-line="201" selection-start-column="11" selection-end-line="201" selection-end-column="11" />
+            <state relative-caret-position="94">
+              <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#hasher#0;class#Test#0" />
@@ -75,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/DataEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
+            <state relative-caret-position="266">
               <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -87,28 +82,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Top10.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1678">
-              <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+            <state relative-caret-position="768">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#318#319#0" expanded="true" />
-                <element signature="e#374#375#0" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <element signature="e#459#460#0" expanded="true" />
-                <element signature="e#506#507#0" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#586#587#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-                <element signature="e#679#680#0" expanded="true" />
-                <element signature="e#727#728#0" expanded="true" />
-                <element signature="e#774#775#0" expanded="true" />
-                <element signature="e#828#829#0" expanded="true" />
-                <element signature="e#864#865#0" expanded="true" />
-                <element signature="e#909#910#0" expanded="true" />
-                <element signature="e#954#955#0" expanded="true" />
-                <element signature="e#1200#1201#0" expanded="true" />
-                <element signature="e#1247#1248#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/MyFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="528">
               <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
             </state>
           </provider>
@@ -126,7 +103,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2470">
+            <state relative-caret-position="1488">
               <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -146,16 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data</find>
-      <find>filesDirectory.get(i).operands</find>
-      <find>wordEntry</find>
-      <find>lineEntry</find>
-      <find>wordEn</find>
-      <find>operatorsList</find>
-      <find>scrollPane.set</find>
-      <find>gridPane</find>
-      <find>scr</find>
-      <find>float a</find>
       <find>+</find>
       <find>matchCount</find>
       <find>showMet</find>
@@ -168,11 +135,24 @@
       <find>WORDS:</find>
       <find>LINE</find>
       <find>&quot;LINE&quot;</find>
-      <find>top10</find>
       <find>top10.</find>
       <find>layoutX</find>
       <find>vocabolary</find>
       <find>vocab</find>
+      <find>getfolder</find>
+      <find>get</find>
+      <find>@fxml public</find>
+      <find>export</find>
+      <find>button</find>
+      <find>file</find>
+      <find>top10</find>
+      <find>top10</find>
+      <find>isalreadytop10</find>
+      <find>top10o</find>
+      <find>top10Obs</find>
+      <find>D://</find>
+      <find>initiald</find>
+      <find>folderchooser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,12 +169,13 @@
         <option value="$PROJECT_DIR$/SimilarityMatrix/src/sample/Top10.java" />
         <option value="$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java" />
+        <option value="$PROJECT_DIR$/SimilarityMatrix/src/sample/ComparisonMatrix.fxml" />
         <option value="$PROJECT_DIR$/SimilarityMatrix/src/sample/Controller.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="418" />
+    <option name="x" value="417" />
     <option name="y" value="-27" />
     <option name="width" value="981" />
     <option name="height" value="1044" />
@@ -205,17 +186,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="LBYCP2D_Collab" type="b2602c69:ProjectViewProjectNode" />
               <item name="SimilarityMatrix" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LBYCP2D_Collab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimilarityMatrix" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LBYCP2D_Collab" type="b2602c69:ProjectViewProjectNode" />
@@ -232,7 +209,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -241,7 +217,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../0000000000JAVA_INT/Krytologic_v2" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -353,10 +329,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="-7" y="23" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25331125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19433199" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -365,14 +341,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49889624" visible="true" weight="0.03208556" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49889624" weight="0.31318682" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50110376" side_tool="true" weight="0.35508022" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.36791444" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.36630037" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49944812" weight="0.03208556" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -487,13 +463,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair3/Directory/Sabularse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/submitted_20200218_101058/LBYCPD2_Pair3/Directory/Sabularse.java" />
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_212/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -503,9 +473,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Operands.java" />
     <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Operators.java" />
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Button.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Button.css" />
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_212/javafx-src.zip!/javafx/beans/property/SimpleStringProperty.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -517,17 +485,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Top10.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/MyFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="528">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1488">
+          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/ComparisonMatrix.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/DataEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="201" column="11" selection-start-line="201" selection-start-column="11" selection-end-line="201" selection-end-column="11" />
+        <state relative-caret-position="94">
+          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasher#0;class#Test#0" />
@@ -540,76 +553,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Top10.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1678">
-          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#275#276#0" expanded="true" />
-            <element signature="e#318#319#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#459#460#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-            <element signature="e#679#680#0" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
-            <element signature="e#828#829#0" expanded="true" />
-            <element signature="e#864#865#0" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#1200#1201#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/DataEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/MetricsData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2470">
-          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SimilarityMatrix/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
+        <state relative-caret-position="94">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="n#!!doc;n#constructList#0;n#Controller#0" />
-            <element signature="method#constructList#0;class#Controller#0" />
-            <element signature="n#!!doc;n#compare#0;n#Controller#0" />
-            <element signature="method#compare#0;class#Controller#0" />
-            <element signature="method#showMetrics#0;class#Controller#0" />
-            <element signature="method#updateMetrics#0;class#Controller#0" />
-            <element signature="method#getMetrics#0;class#Controller#0" />
-            <element signature="method#matchCount#0;class#Controller#0" />
-            <element signature="method#getOperatorsMainList#0;class#Controller#0" />
           </folding>
         </state>
       </provider>
