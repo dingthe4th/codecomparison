@@ -1,22 +1,31 @@
 package sample;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 
-import javax.xml.crypto.Data;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Controller {;
+public class Controller implements Initializable {;
+    /* initial directory of the program || change if you are using different PC */
+    private static final String initialDirectory = "D:\\LBYCP2D_Collab\\SimilarityMatrix\\src";
+    public TableView<Top10> tableView;
+    @FXML private TableColumn<Top10, String> table_col1;
+    @FXML private TableColumn<Top10, String> table_col2;
+    @FXML private TableColumn<Top10, Float> table_col3;
     @FXML ScrollPane scrollPane = new ScrollPane();             // parent of grid pane
     @FXML Label prompt;                                         // program status
     @FXML Label fileCountLabel;                                 // display file count in submission folder
@@ -24,12 +33,23 @@ public class Controller {;
     GridPane gridPane;                                          // for matrix display
     ArrayList<MyFile> filesDirectory;                           // list for files
     ArrayList<String> operatorsMainList;                        // list for operators from a text file
+    ArrayList<Top10> top10Score;                                // list the top 10 similarity scorer
     File folder;                                                // submission folder
+    ObservableList<Top10> top10ObservableList;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        top10ObservableList = FXCollections.observableArrayList();
+        tableView.setItems(top10ObservableList);
+        table_col1.setCellValueFactory(new PropertyValueFactory<>("file_1"));
+        table_col2.setCellValueFactory(new PropertyValueFactory<>("file_2"));
+        table_col3.setCellValueFactory(new PropertyValueFactory<>("score"));
+    }
 
     @FXML public void getFolder() throws IOException {
         filesDirectory = new ArrayList<>();
         DirectoryChooser folderChooser = new DirectoryChooser();
-        folderChooser.setInitialDirectory(new File("D:\\LBYCP2D_Collab\\SimilarityMatrix\\src"));
+        folderChooser.setInitialDirectory(new File(initialDirectory));
         folder = folderChooser.showDialog(null);
         prompt.setText("Folder selected: " + folder.getName());
         listView.getItems().clear();
@@ -46,6 +66,15 @@ public class Controller {;
         }
         getOperatorsMainList();
         getMetrics();
+
+        top10Score = new ArrayList<>();
+        // initialize top10Scores for tableViewing
+        for(int i=0; i<10; i++) {
+            Top10 temp = new Top10("DEFAULT1", "DEFAULT2",0);
+            top10Score.add(temp);
+        }
+        top10ObservableList.clear();
+        // ends init
     }       // gets the submission folder
     @FXML public void showMatrix() throws IOException {
         gridPane = new GridPane();
@@ -54,8 +83,8 @@ public class Controller {;
             return;
         }
         scrollPane.setContent(gridPane);
-        scrollPane.setLayoutX(0);
-        scrollPane.setLayoutY(120);
+        scrollPane.setLayoutX(13);
+        scrollPane.setLayoutY(226);
         getMatrix();
     }       // showMatrix
     public void getMatrix() {
@@ -66,6 +95,7 @@ public class Controller {;
             Rectangle rect = new Rectangle(50,30);
             rect.setFill(Color.TRANSPARENT);
             Label label = new Label(filesDirectory.get(i).getFile().getName());
+            label.setMaxSize(50,30);
             label.setAlignment(Pos.CENTER);
             StackPane sp = new StackPane(rect,label);
             gridPane.add(sp,0,i+1);
@@ -77,6 +107,7 @@ public class Controller {;
             Rectangle rect = new Rectangle(50,30);
             rect.setFill(Color.TRANSPARENT);
             Label label = new Label(filesDirectory.get(i).getFile().getName());
+            label.setMaxSize(50,30);
             label.setAlignment(Pos.CENTER);
             StackPane sp = new StackPane(rect,label);
             for (int j = 0; j < filesDirectory.size(); j++) {
@@ -85,22 +116,33 @@ public class Controller {;
                     float a =  Test.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
+                    Top10 entry1 = new Top10(filesDirectory.get(i).getFile().getName(),filesDirectory.get(j).getFile().getName(),a);
+                    if(a!=1 && !isAlreadyTop10(entry1)) updateTop10List(entry1);
                 }
                 else {
                     float a =  Test.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
+                    Top10 entry1 = new Top10(filesDirectory.get(i).getFile().getName(),filesDirectory.get(j).getFile().getName(),a);
+                    if(a!=1 && !isAlreadyTop10(entry1)) updateTop10List(entry1);
                 }
             }
             gridPane.getRowConstraints().add(new RowConstraints(30));
             gridPane.getColumnConstraints().add(new ColumnConstraints(50));
         }
 
+        // update observable Top 10 list in TableView
+        for(Top10 entry : top10Score) {
+            top10ObservableList.add(entry);
+        }
+        // End of update
+
         // DISPLAYS NAME : BOTTOM -- verified
         for(int i = 0; i<filesDirectory.size(); i++) {
             Rectangle rect = new Rectangle(50,30);
             rect.setFill(Color.TRANSPARENT);
             Label label = new Label(filesDirectory.get(i).getFile().getName());
+            label.setMaxSize(50,30);
             label.setAlignment(Pos.CENTER);
             StackPane sp = new StackPane(rect,label);
             gridPane.add(sp,i+1,filesDirectory.size()+1);
@@ -112,13 +154,53 @@ public class Controller {;
             rect.setFill(Color.TRANSPARENT);
 
             Label label = new Label(filesDirectory.get(i).getFile().getName());
+            label.setMaxSize(50,30);
             label.setAlignment(Pos.CENTER);
             StackPane sp = new StackPane(rect,label);
             gridPane.add(sp,filesDirectory.size()+1,i+1);
         }
     }                                   // get matrix values
-    // generate list per submission entry
+
+    // update Top 10 values
+    public void updateTop10List(Top10 entry1) {
+        for(int k=0; k<top10Score.size(); k++) {
+            if((entry1.getScore() > top10Score.get(k).getScore()) && !top10Score.contains(entry1)) {
+                System.out.println("I GOT HERE BOY");
+                top10Score.remove(top10Score.size()-1);
+                top10Score.add(k,entry1);
+            }
+        }
+    }
+
+    /*
+    * Checks if same entry is in the list of Top 10
+    * This is to avoid the existence of a similar entry within the top 10 list.
+    * =====================
+    * Example:
+    * FILE A, FILE B, SCORE
+    * a.java, b.java, 1.0
+    * b.java, a.java, 1.0
+    * =====================
+    */
+    public boolean isAlreadyTop10(Top10 entry) {
+        boolean similar = false;
+        for(Top10 entries : top10Score) {
+            boolean flag1 = entry.getFile_1().equals(entries.getFile_2());
+            boolean flag2 = entry.getFile_2().equals(entries.getFile_1());
+            if(flag1 && flag2) {
+                similar = true;
+                break;
+            }
+        }
+        return similar;
+    }
+
+    /* generate list per submission entry
+    *   PER LINE
+    *   PER WORD
+    */
     public void constructList(File file, ArrayList<String> wordList, ArrayList<String> lineList) throws IOException {
+     */
         if(file.isDirectory()) {
             for(File entry : Objects.requireNonNull(file.listFiles())) {
                 constructList(entry,wordList,lineList);
@@ -143,6 +225,9 @@ public class Controller {;
             br.close();
         }
     }
+    /*
+    * OLD FUNCTION FOR COMPARING 2 FILES
+    */
     public float compare(ArrayList<String> list1, ArrayList<String> list2) {
         int totalWords, count;
         ArrayList<String> temp1 = new ArrayList<>(list1);
@@ -220,7 +305,7 @@ public class Controller {;
                     label.setText("Level");
                     break;
                 case 5:
-                    label.setText("Vocab");
+                    label.setText("Vocabulary");
                     break;
                 case 6:
                     label.setText("Volume");
@@ -278,7 +363,7 @@ public class Controller {;
         boolean commentDetected = false;
         for(int i = 0; i<filesDirectory.size(); i++) {
             for (String line : filesDirectory.get(i).lineEntry) {
-                System.out.println("LINE " + line);
+//                System.out.println("LINE " + line);
                 // detects if line contains a // comment
                 if(matchCount(line,"//") != 0) {
                     try {
@@ -316,7 +401,7 @@ public class Controller {;
                     words = words.replaceAll("\\W", " ");
                     words = words.trim();
                     if(!words.equals(" ") && !words.equals(""))
-                        System.out.println("WORDS: " + words.trim());
+//                        System.out.println("WORDS: " + words.trim());
                         filesDirectory.get(i).addOperand(words.trim());
                 }
             }
@@ -345,4 +430,5 @@ public class Controller {;
         System.out.println(operatorsMainList);
         System.out.println("MAINLISTOPERATORS" + operatorsMainList.size());
     }           // get the list of operators from a text file
+    public void exitProgram() { System.exit(0); }
 }

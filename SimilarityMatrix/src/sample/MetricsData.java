@@ -40,42 +40,42 @@ public class MetricsData {
     }
 
     public StackPane getDifficultyPane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programDifficulty));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
 
     public StackPane getLevelPane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programLevel));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
 
     public StackPane getEffortPane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programEffort));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
 
     public StackPane getVolumePane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programVolume));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
 
     public StackPane getLengthPane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programLength));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);
     }
 
     public StackPane getVocabolaryPane() {
-        Rectangle rect = new Rectangle(50,30);
+        Rectangle rect = new Rectangle(130,30);
         Label label = new Label(String.valueOf(programVocabolary));
         label.setTextFill(Color.WHITE);
         return new StackPane(rect,label);

@@ -192,14 +192,14 @@ public class Test {
 
 
     public static void main(String args[]){
-        try {
-            ArrayList<int[]> fp1 = fingerPrint(toKGrams(toString("assets//Controller.java"),10),100);
-            ArrayList<int[]> fp2 = fingerPrint(toKGrams(toString("assets//Controller2.java"),10),100);
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ArrayList<int[]> fp1 = fingerPrint(toKGrams(toString("assets//Controller.java"),10),100);
+//            ArrayList<int[]> fp2 = fingerPrint(toKGrams(toString("assets//Controller2.java"),10),100);
+//
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

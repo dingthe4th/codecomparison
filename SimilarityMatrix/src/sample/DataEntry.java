@@ -1,9 +1,17 @@
 package sample;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import sun.java2d.pipe.SpanShapeRenderer;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class DataEntry {
     float comparisonScore;
@@ -26,16 +34,7 @@ public class DataEntry {
 
     public void setRectColor(float score, Rectangle rect) {
         rect.setFill(Color.rgb( 0,255-Math.round(255*score),0));
-
-//        if(score < .20 || score == .20)
-//            rect.setFill(Color.INDIGO);
-//        else if(score < .40 || score == .4)
-//            rect.setFill(Color.BLUE);
-//        else if(score < .60 || score == .6)
-//            rect.setFill(Color.GREEN);
-//        else if(score < .80 || score == .8)
-//            rect.setFill(Color.ORANGE);
-//        else if(score > .80 || score == 1.0)
-//            rect.setFill(Color.RED);
     }
+
+
 }

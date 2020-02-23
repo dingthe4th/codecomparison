@@ -23,7 +23,7 @@ public class MyFile {
         return myFile;
     }
 
-    String getString(){//gets the concat string
+    String getString(){         //gets the concat string
         String temp = "";
         for(String word: this.wordEntry){
             temp+=word;
