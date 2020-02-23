@@ -47,6 +47,7 @@ public class Controller implements Initializable {;
     }
 
     @FXML public void getFolder() throws IOException {
+
         filesDirectory = new ArrayList<>();
         DirectoryChooser folderChooser = new DirectoryChooser();
         folderChooser.setInitialDirectory(new File(initialDirectory));
@@ -72,6 +73,7 @@ public class Controller implements Initializable {;
         for(int i=0; i<10; i++) {
             Top10 temp = new Top10("DEFAULT1", "DEFAULT2",0);
             top10Score.add(temp);
+            System.out.println("daapaj;dalfjl;asdfj;l");
         }
         top10ObservableList.clear();
         // ends init
@@ -184,6 +186,8 @@ public class Controller implements Initializable {;
     */
     public boolean isAlreadyTop10(Top10 entry) {
         boolean similar = false;
+        System.out.println(entry.getFile_1()+" tite");
+
         for(Top10 entries : top10Score) {
             boolean flag1 = entry.getFile_1().equals(entries.getFile_2());
             boolean flag2 = entry.getFile_2().equals(entries.getFile_1());
@@ -407,7 +411,7 @@ public class Controller implements Initializable {;
             }
         }
     }
-    // get list of operators and operands
+    // get list of operators and
     int matchCount(String str, String target) {
         Pattern p = Pattern.compile(target, Pattern.LITERAL);
         Matcher m = p.matcher(str);
@@ -416,7 +420,7 @@ public class Controller implements Initializable {;
         return  count;
     }               // returns the frequency of a substring in a string
     void getOperatorsMainList() throws IOException {
-        File file = new File("D:\\LBYCP2D_Collab\\SimilarityMatrix\\src\\sample\\list_operators.txt");
+        File file = new File(System.getProperty("user.dir")+"//SimilarityMatrix//src//sample//list_operators.txt");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         String line;
