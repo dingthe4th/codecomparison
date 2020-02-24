@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("Comparison Matrix");
         Scene scene = new Scene(root,1280,865);
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
     public static void main(String[] args) {

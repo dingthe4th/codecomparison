@@ -21,7 +21,10 @@ import java.util.regex.Pattern;
 
 public class Controller implements Initializable {;
     /* initial directory of the program || change if you are using different PC */
-    private static final String initialDirectory = System.getProperty("user.dir");
+    private static final String initialDirectory = System.getProperty("user.home");
+
+
+
     public TableView<Top10> tableView;
     @FXML private TableColumn<Top10, String> table_col1;
     @FXML private TableColumn<Top10, String> table_col2;
@@ -34,6 +37,7 @@ public class Controller implements Initializable {;
     ArrayList<MyFile> filesDirectory;                           // list for files
     ArrayList<String> operatorsMainList;                        // list for operators from a text file
     ArrayList<Top10> top10Score;                                // list the top 10 similarity scorer
+    ArrayList<ArrayList<Float>> scoreMatrix = new ArrayList<>();
     File folder;                                                // submission folder
     ObservableList<Top10> top10ObservableList;
 
@@ -112,17 +116,20 @@ public class Controller implements Initializable {;
             label.setMaxSize(50,30);
             label.setAlignment(Pos.CENTER);
             StackPane sp = new StackPane(rect,label);
+            scoreMatrix.add(new ArrayList<>());
             for (int j = 0; j < filesDirectory.size(); j++) {
+
+                float a =  Test.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
+                scoreMatrix.get(i).add(a);
+
                 if (j == 0) {
                     gridPane.add(sp, i+1, 0);
-                    float a =  Test.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
                     Top10 entry1 = new Top10(filesDirectory.get(i).getFile().getName(),filesDirectory.get(j).getFile().getName(),a);
                     if(a!=1 && !isAlreadyTop10(entry1)) updateTop10List(entry1);
                 }
                 else {
-                    float a =  Test.getSimilarity(filesDirectory.get(i).getString(),filesDirectory.get(j).getString());
                     dataEntries[i][j] = new DataEntry((float) Math.round(a * 100) / 100);
                     gridPane.add(dataEntries[i][j].getStackPane(), i+1, j+1);
                     Top10 entry1 = new Top10(filesDirectory.get(i).getFile().getName(),filesDirectory.get(j).getFile().getName(),a);
@@ -167,7 +174,6 @@ public class Controller implements Initializable {;
     public void updateTop10List(Top10 entry1) {
         for(int k=0; k<top10Score.size(); k++) {
             if((entry1.getScore() > top10Score.get(k).getScore()) && !top10Score.contains(entry1)) {
-                System.out.println("I GOT HERE BOY");
                 top10Score.remove(top10Score.size()-1);
                 top10Score.add(k,entry1);
             }
@@ -434,5 +440,30 @@ public class Controller implements Initializable {;
         System.out.println(operatorsMainList);
         System.out.println("MAINLISTOPERATORS" + operatorsMainList.size());
     }           // get the list of operators from a text file
+
+    @FXML
+    public void exportMatrix() throws IOException {
+
+
+        String str = "Hello";
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Matrix.csv"));
+
+        for(MyFile f: filesDirectory){
+            writer.write(f.getFile().getName()+",");
+        }
+
+        for(ArrayList<Float> scoreList:scoreMatrix){
+            writer.write("\n");
+            for(float s:scoreList){
+
+                writer.write(s+",");
+            }
+
+        }
+        writer.close();
+
+
+    }
+
     public void exitProgram() { System.exit(0); }
 }
