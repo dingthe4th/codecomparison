@@ -10,6 +10,11 @@ import java.util.Iterator;
 //  This is the class where I  play around ideas and see if they work
 public class Test {
 
+
+    static final int k = 6;
+    static final int t = 20 ;
+
+
     static void hasher(String filePath)throws Exception{    //hashes the code
 
         String fileString = "",fileLine;
@@ -89,82 +94,95 @@ public class Test {
 
     }
 
-    static ArrayList<Integer> toKGrams(String stringCode,int k ){
+    static ArrayList<Integer> toKGramsHash(String stringCode ){
+
         ArrayList<Integer> hashSet = new ArrayList<>();
         String temp =""; //concatenates the k grams
         for(int i = 0;i<stringCode.length();i++){
             temp = "";
-            for(int x = 0;x<k;x++){
-                temp+=stringCode.charAt(i);
+            for(int j = i;j<i+k;j++){
+                temp+=stringCode.charAt(j%stringCode.length());
             }
-            hashSet.add(temp.hashCode());
-
+            hashSet.add( temp.hashCode() );
         }
         return hashSet;
     }
 
-    static ArrayList<int[]> fingerPrint(ArrayList<Integer> h, int w){
-
+    static ArrayList<Integer> fingerPrint(ArrayList<Integer> h){
+        int w = t-k+1;
         //iterate the entire hashsetint
-        int min = 0;//records mins
-        ArrayList<int[]> fingerPrints = new ArrayList<>();
+        int min = Integer.MAX_VALUE,minIndex=-1;//records mins
+        ArrayList<Integer> fingerPrints = new ArrayList<>();
 
         //initial window
 
-        for(int x=w-1;x>0;x--){
-            if(h.get(x)<h.get(min)){
-                x=min;
-            }
+        //got from github
 
+        for (int i = 0; i<h.size();i++ ){ // i contain leftmost index of the window
+
+
+           if(minIndex == i-1){// the min hash is not oustide of the window
+               min = Integer.MAX_VALUE;
+               for(int x=i; x<w+i; x++){
+                   if( min> h.get( x % h.size()) ){
+                       minIndex=x%h.size();
+                       min = h.get( x % h.size());
+                   }
+                   fingerPrints.add(min);
+               }
+           }
+           else{// if previous min hash is still in this window
+
+               if(min>h.get( (i+w)%h.size()   )){// is the right hash smaller than min?
+                   min = h.get((i+w)%h.size() );
+                   minIndex=(i+w) %h.size();
+                   fingerPrints.add(min);
+               }
+           }
         }
 
-        int[] fp = new int[2];
-        fp[0] = h.get(min);
-        fp[1]=min;
-        fingerPrints.add(fp);
 
-        for(int r = w;r<h.size();r++){
-            if(min<r-w+1){// r is on the left side already
-                min=r;
-                for(int i = r-1;i>r-w+1;i--){
-                    if(h.get(min)>h.get(i)){
-                        min = i;
-                    }
-                }
 
-                int[] temp = new int[2];
-                temp[0] = h.get(min);
-                temp[1]=min;
-                fingerPrints.add(temp);
 
-            }
-            else{
-                if(h.get(r)<=h.get(min)){
-                    min = r;
-                    int[] temp = new int[2];
-                    temp[0] = h.get(min);
-                    temp[1]=min;
-                    fingerPrints.add(temp);
+        /*
+         WinnowFingerPrint fp = new WinnowFingerPrint();
+        int n = input.length;
+        int lastMin = -1;
+
+        for (int i = 0; i < n - w + 1; i++) {
+            int min = Integer.MAX_VALUE;
+            int index = 0;
+            for (int j = 0; j < w; j++) {
+                if (input[i + j] < min) {
+                    min = input[i + j];
+                    index = i + j;
                 }
             }
 
-
+            if (lastMin != index) {
+                fp.putHash(index, min);
+                lastMin = index;
+            }
         }
+        return fp;
+    }
+        got from github end
 
+         */
 
         return  fingerPrints;
         // i is left ipart of window
     }
 
 
-    static float getSimilarity(ArrayList<int[]> fingerPrint1, ArrayList<int[]> fingerPrint2){
+    static float getSimilarity(ArrayList<Integer> fingerPrint1, ArrayList<Integer> fingerPrint2){
 
         ArrayList<Integer> fp1IndexSimilarSet = new ArrayList<>(),fp2IndexSimilarSet = new ArrayList<>();
         int occurences = 0;
 
         for(int i = 0;i<fingerPrint1.size(); i++){//iterates through the entirety of fingerprint1
             for(int j = 0;j<fingerPrint2.size();j++){
-                if(fingerPrint1.get(i)[0]==fingerPrint2.get(j)[0]){
+                if(fingerPrint1.get(i).equals(fingerPrint2.get(j))){
                     if(fp1IndexSimilarSet.contains(i)||fp2IndexSimilarSet.contains(j)){
                         //if  both indexes are not yet marked as similar to another element, add them to the set and increment occurences
                     }
@@ -177,6 +195,7 @@ public class Test {
                 }
             }
         }
+
         int union = fingerPrint1.size()+fingerPrint2.size()-occurences;
         System.out.print("Similarity checked");
         return (float)occurences/union;
@@ -184,8 +203,9 @@ public class Test {
     }
 
     static float getSimilarity(String code1, String code2){
-        ArrayList<int[]> fp1 = fingerPrint(toKGrams(code1,3),100);
-        ArrayList<int[]> fp2 = fingerPrint(toKGrams(code2,3),100);
+        System.out.println(code1+" compared to "+code2);
+        ArrayList<Integer> fp1 = fingerPrint(toKGramsHash(code1));
+        ArrayList<Integer> fp2 = fingerPrint(toKGramsHash(code2));
         return getSimilarity(fp1,fp2);
 
     }
@@ -193,8 +213,13 @@ public class Test {
 
     public static void main(String args[]){
         try {
-            ArrayList<int[]> fp1 = fingerPrint(toKGrams(toString("Assets//Controller.java"),10),100);
-            ArrayList<int[]> fp2 = fingerPrint(toKGrams(toString("Assets//Controller2.java"),10),100);
+            String str = System.getProperty("user.dir");
+            ArrayList<Integer> fp1 = fingerPrint(toKGramsHash(toString(str+"//SimilarityMatrix//Assets//Controller.java")));
+            ArrayList<Integer> fp2 = fingerPrint(toKGramsHash(toString(str+"//SimilarityMatrix//Assets//Controller2.java")));
+            System.out.println(fp1);
+            System.out.println(fp2);
+            System.out.println(getSimilarity(fp1,fp2));
+            //System.out.println(toKGrams("THE BIG BROWN FOX JUMP OVER THE LAZY DOG",10));
 
         }
         catch (Exception e) {

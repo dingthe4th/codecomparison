@@ -192,7 +192,6 @@ public class Controller implements Initializable {;
     */
     public boolean isAlreadyTop10(Top10 entry) {
         boolean similar = false;
-        System.out.println(entry.getFile_1()+" tite");
 
         for(Top10 entries : top10Score) {
             boolean flag1 = entry.getFile_1().equals(entries.getFile_2());
