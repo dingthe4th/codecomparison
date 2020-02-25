@@ -425,6 +425,7 @@ public class Controller implements Initializable {;
         while(m.find()) count++;
         return  count;
     }               // returns the frequency of a substring in a string
+
     void getOperatorsMainList() throws IOException {
         File file = new File(System.getProperty("user.dir")+"//SimilarityMatrix//src//sample//list_operators.txt");
         FileReader fr = new FileReader(file);
@@ -441,19 +442,21 @@ public class Controller implements Initializable {;
         System.out.println("MAINLISTOPERATORS" + operatorsMainList.size());
     }           // get the list of operators from a text file
 
+    /*
+        exports  the matrix data into a csv file
+     */
     @FXML
     public void exportMatrix() throws IOException {
 
-
-        String str = "Hello";
         BufferedWriter writer = new BufferedWriter(new FileWriter("Matrix.csv"));
 
         for(MyFile f: filesDirectory){
             writer.write(f.getFile().getName()+",");
         }
 
+        int x = 0;
         for(ArrayList<Float> scoreList:scoreMatrix){
-            writer.write("\n");
+            writer.write("\n"+filesDirectory.get(x).getFile().getName());
             for(float s:scoreList){
 
                 writer.write(s+",");
@@ -462,6 +465,20 @@ public class Controller implements Initializable {;
         }
         writer.close();
 
+
+    }
+    @FXML
+    public void exportMetrics() throws IOException{
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Metrics.csv"));
+
+        writer.write("Name,Difficulty,Effort,Length,level,vocabulary,volume");
+        for(MyFile f:filesDirectory){
+
+            String row = String.format("\n%s,%f,%f,%f,%f,%f,%f",f.getFile().getName(),f.metricsData.programDifficulty,f.metricsData.programEffort,f.metricsData.programLength,f.metricsData.programLevel,f.metricsData.programLevel,f.metricsData.programVocabolary,f.metricsData.programVolume);
+            writer.write(row);
+        }
+        writer.close();
 
     }
 
