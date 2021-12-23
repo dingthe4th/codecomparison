@@ -1,9 +1,4 @@
-# LBYCP2D_Collab
-
-
-From test java (you can rename this)
-
-
+# Local Code Similarity Checker with Winnowing Algorithm in JavaFX
 
 String toString(String filepath) 
 
